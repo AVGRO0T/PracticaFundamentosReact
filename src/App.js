@@ -1,9 +1,8 @@
-import { Header } from "./templates/header";
-
+import UserLogin from "./userLogin/userLogin";
 function App() {
   return (
     <div className="App">
-      <Header></Header>
+      <UserLogin /> 
     </div>
   );
 }
