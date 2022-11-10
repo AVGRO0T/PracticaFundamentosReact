@@ -1,8 +1,10 @@
-import UserLogin from "./userLogin/userLogin";
+//import UserLogin from "./components/userLogin/userLogin";
+import CreateAdverts from "./components/adverts/createAdversPage";
 function App() {
   return (
     <div className="App">
-      <UserLogin /> 
+      <CreateAdverts/>
+
     </div>
   );
 }
