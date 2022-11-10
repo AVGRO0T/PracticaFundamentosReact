@@ -16,3 +16,6 @@ export const login = credentials => {
       storage.remove('auth');
     });
   };
+  export const createAdverts = articles => {
+    return client.post('/api/v1/adverts', articles)
+  };
