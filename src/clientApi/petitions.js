@@ -4,7 +4,7 @@ import client,{
 } from "./client";
 import storage from "./tokenStorage";
 export const login = credentials => {
-    return client.post('auth/login', credentials).then(({ accessToken }) => {
+    return client.post('api/auth/login', credentials).then(({ accessToken }) => {
       setAuthorizationHeader(accessToken);
       storage.set('auth', accessToken);
     });
