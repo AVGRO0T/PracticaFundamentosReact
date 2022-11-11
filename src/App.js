@@ -3,8 +3,8 @@ import CreateAdverts from "./components/adverts/createAdversPage";
 function App() {
   return (
     <div className="App">
-      <CreateAdverts/>
-
+     <CreateAdverts/> 
+      
     </div>
   );
 }

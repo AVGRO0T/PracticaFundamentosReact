@@ -12,7 +12,7 @@ const GetTag = () => {
             setTags(tags);
         };
         execute();
-    },);
+    },[]);
     return tags;
 }
 
@@ -22,8 +22,8 @@ const CreateAdverts = () => {
     
  
     const [name, setName] = useState('');
-    const [sale, setSale] = useState('');
-    const [price, setPrice] = useState(0);
+    const [sale, setSale] = useState(true);
+    const [price, setPrice] = useState('');
     const [tags, setTags]= useState([]);
     const [image, setImage]= useState('');
 
@@ -39,7 +39,8 @@ const CreateAdverts = () => {
         event.preventDefault();
 
     try {
-        /* const createdAdverts = */ await createAdverts({ name, sale, price, tags, image});
+        /* const createdAdverts = */ await createAdverts({ name, sale, price, tags});
+        console.log("CREADO");
     } catch (error) {
         console.log ("HACER UN ERROR");
     } 
@@ -66,8 +67,8 @@ const CreateAdverts = () => {
             <label>
             Tags:
             <select value={tags} onChange={handleChangeTags}>
-              {GetTag().map(item => {
-                  return (<option key={item} value={item}>{item}</option>);
+              {GetTag().map(tag => {
+                  return (<option key={tag} value={tag}>{tag}</option>);
               })}
             </select>
           </label>
