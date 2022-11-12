@@ -3,6 +3,7 @@ import client,{
   setAuthorizationHeader,
 } from "./client";
 import storage from "./tokenStorage";
+
 export const login = credentials => {
     return client.post('api/auth/login', credentials).then(({ accessToken }) => {
       setAuthorizationHeader(accessToken);
@@ -16,7 +17,9 @@ export const login = credentials => {
       storage.remove('auth');
     });
   };
+  
   export const createAdverts = articles => {
+    
     return client.post('/api/v1/adverts', articles)
     };
   

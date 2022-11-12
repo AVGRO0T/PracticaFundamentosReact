@@ -4,7 +4,7 @@ import { getTags } from './tags';
 
 
 const GetTag = () => {
-    const [tags, setTags] = useState(["rojo","rojo"]);
+    const [tags, setTags] = useState([]);
 
     useEffect (() => {
         const execute = async () => {
@@ -25,13 +25,13 @@ const CreateAdverts = () => {
     const [sale, setSale] = useState(true);
     const [price, setPrice] = useState('');
     const [tags, setTags]= useState([]);
-    const [image, setImage]= useState('');
+    const [photo, setPhoto]= useState(null);
 
     const handleChangeName = event => setName(event.target.value);
     const handleChangeSale = event => setSale(event.target.value);
     const handleChangePrice = event => setPrice(event.target.value);
     const handleChangeTags = event => setTags(event.target.value);
-    const handleChangeImage = event => setImage(event.target.value);
+    const handleChangephoto = event => setPhoto(event.target.files[0]);
     
      
     
@@ -39,7 +39,15 @@ const CreateAdverts = () => {
         event.preventDefault();
 
     try {
-        /* const createdAdverts = */ await createAdverts({ name, sale, price, tags});
+        const formData = new FormData();
+        if (photo != null){
+            formData.append("photo", photo)
+        }
+        formData.append("name", name )
+        formData.append("sale", sale)
+        formData.append("price", price)
+        formData.append("tags", tags)
+       await createAdverts(formData);
         console.log("CREADO");
     } catch (error) {
         console.log ("HACER UN ERROR");
@@ -49,7 +57,7 @@ const CreateAdverts = () => {
     return (
         <div>
             <h1> CREA TU ANUNCIO </h1>
-            <form onSubmit={handleSubmit}>
+            <form method='post' onSubmit={handleSubmit} enctype="multipart/form-data" >
             <label> Name </label>
             <input type={"text"} onChange={handleChangeName} name="name" value={name}/>
             <div className='selectSale'>
@@ -66,7 +74,7 @@ const CreateAdverts = () => {
             <div className='selectTags'>
             <label>
             Tags:
-            <select value={tags} onChange={handleChangeTags}>
+            <select value={tags} multiple onChange={handleChangeTags}>
               {GetTag().map(tag => {
                   return (<option key={tag} value={tag}>{tag}</option>);
               })}
@@ -74,7 +82,7 @@ const CreateAdverts = () => {
           </label>
             </div>
             <label> IMAGEN:
-                <input type={"file"} value={image} onChange={handleChangeImage}></input>
+                <input type={"file"} id="fileInput"  onChange={handleChangephoto}></input>
             </label>
             <input type="submit"></input>
             </form>
