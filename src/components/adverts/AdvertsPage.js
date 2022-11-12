@@ -75,7 +75,7 @@ const EmptyList = () => (
                 {results.map(advert => (
                     <li key={advert.id}>
 
-                    <Link to={`/`}>
+                    <Link to={`/adverts/${advert.id}`}>
                         <article>
                             <div>
 

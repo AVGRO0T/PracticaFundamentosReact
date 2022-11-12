@@ -5,6 +5,7 @@ import CreateAdverts from "./components/adverts/NewAdvertPage";
 import RequireAuth  from "./components/userLogin/RequireAuth";
 import Layout from "./components/layout/Layout"
 import AdvertsPage from './components/adverts/AdvertsPage';
+import AdvertPage from './components/adverts/AdvertPage';
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
     <Route path="/login" element={<UserLogin />}/>
     <Route path="/adverts" element={<Layout />}>
     <Route index element={<AdvertsPage />} />
-
+    <Route path=":advertId" element={<AdvertPage/>}/>
     <Route
             path="new"
             element={

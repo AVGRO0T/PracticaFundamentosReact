@@ -25,4 +25,11 @@ export const login = credentials => {
   export const getAdverts = () => {
     return client.get('/api/v1/adverts');
   }
+  export const getAdvertsDetail = advertId => {
+    return client.get(`/api/v1/adverts/${advertId}`);
+  }
+
+  export const deleteAdvertsDetail = advertId => {
+    return client.get(`/api/v1/adverts/${advertId}`);
+  }
   
