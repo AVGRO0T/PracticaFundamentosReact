@@ -19,7 +19,10 @@ export const login = credentials => {
   };
   
   export const createAdverts = articles => {
-    
     return client.post('/api/v1/adverts', articles)
     };
+
+  export const getAdverts = () => {
+    return client.get('/api/v1/adverts');
+  }
   

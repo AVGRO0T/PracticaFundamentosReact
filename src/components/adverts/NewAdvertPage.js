@@ -64,8 +64,8 @@ const CreateAdverts = () => {
                 <label>
                 Sale:
                 <select onChange={handleChangeSale} value={sale}>
-                    <option value={true}>true</option>
-                    <option value={false}>false</option>
+                    <option value={true}>Compra</option>
+                    <option value={false}>Venta</option>
                 </select>
                 </label>
             </div>
