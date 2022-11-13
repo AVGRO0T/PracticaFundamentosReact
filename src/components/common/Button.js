@@ -1,34 +1,28 @@
 import styled from 'styled-components';
 
-const accentColor = 'rgb(29, 161, 242)';
+const accentColor = 'rgb(35, 155, 86)';
 
 const Button = styled.button`
-  align-items: center;
-  background-color: ${props =>
-    props.variant === 'primary' ? accentColor : 'white'};
-  border-radius: 9999px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: ${accentColor};
-  color: ${props => (props.variant === 'primary' ? 'white' : accentColor)};
-  cursor: pointer;
-  display: inline-flex;
-  font: inherit;
-  font-weight: bold;
-  min-height: 36px;
-  justify-content: center;
-  min-width: 72px;
-  outline-style: none;
-  opacity: ${props => (props.disabled ? 0.5 : 1)};
-  padding: 0 30px;
-  pointer-events: ${props => (props.disabled ? 'none' : 'auto')};
-  text-decoration: none;
-  transition: background-color 0.2s;
-  &:hover {
-    background-color: ${props =>
-      props.variant === 'primary'
-        ? 'rgb(26, 145, 218)'
-        : 'rgba(29, 161, 242, 0.1)'};
+text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+text-align:center;
+text-decoration: none;
+font-family: 'Helvetica Neue', Helvetica, sans-serif;
+display:inline-block;
+color: #FFF;
+background: #7F8C8D;
+padding: 7px 20px;
+white-space: nowrap;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 100px;
+margin: 10px 5px;
+-webkit-transition: all 0.2s ease-in-out;
+-ms-transition: all 0.2s ease-in-out;
+-moz-transition: all 0.2s ease-in-out;
+-o-transition: all 0.2s ease-in-out;
+transition: all 0.2s ease-in-out;
+background: #2ECC71;
+  box-shadow: 0px 5px 0px 0px #27AE60;
   }
 `;
 

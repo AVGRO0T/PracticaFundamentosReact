@@ -5,6 +5,9 @@ import storage from './clientApi/tokenStorage';
 import { setAuthorizationHeader } from './clientApi/client';
 import { AuthContextProvider } from './components/userLogin/userState';
 import { BrowserRouter as Router } from 'react-router-dom';
+import './styles/normalize.css'
+import './styles/reset.css'
+import './styles/sections.css'
 const accessToken = storage.get('auth');
 setAuthorizationHeader(accessToken);
 console.log(accessToken);

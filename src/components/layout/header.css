@@ -1,0 +1,15 @@
+.header {
+    align-items: center;
+    display: flex;
+    background-color: #D4E157;
+  }
+  .header-nav {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    padding: 20px;
+  }
+  .header-button {
+    width: 144px;
+    margin-left: 10px;
+  }

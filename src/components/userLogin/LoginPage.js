@@ -1,13 +1,17 @@
 import { useState } from "react";
-//import { useAuth } from "./userState";
+import { useAuth } from "./userState";
 import { login } from "../../clientApi/petitions";
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const UserLogin = () => {
     const [email, setemail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
     const [isFetching, setIsFetching] = useState(false);
-    //const { handleLogin } = useAuth();
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const { handleLogin } = useAuth();
 
     const handleChangeemail = event => setemail(event.target.value);
     const handleChangePassword = event => setPassword(event.target.value);
@@ -19,16 +23,9 @@ const UserLogin = () => {
           resetError();
           setIsFetching(true);
           await login({ email, password });
-         // useAuth();
-          //const to = location.state?.from?.pathname || '/';
-    
-          // const to =
-          //   (location.state &&
-          //     location.state.from &&
-          //     location.state.from.pathname) ||
-          //   '/';
-    
-         // navigate(to, { replace: true });
+          handleLogin();
+          const to = location.state?.from?.pathname || '/';
+          navigate(to, { replace: true });
         } catch (error) {
           setError(error);
           setIsFetching(false);

@@ -3,7 +3,9 @@ import { useState } from 'react';
 import { getAdverts } from '../../clientApi/petitions';
 import { Link } from 'react-router-dom';
 import Button from '../common/Button';
-//import classNames from 'classnames';
+
+import './AdvertsPage.css'
+
 import Page from '../layout/Page';
 import { GetTag } from './NewAdvertPage';
 const EmptyList = () => (
@@ -33,7 +35,7 @@ const EmptyList = () => (
     const [filtername, setFiltername] = useState('');
     const [filterprice, setFilterprice] = useState(0);
     const [filtersale, setFilterSale] = useState('todos');
-    const [filtertag, setFiltertags] = useState([]);
+    const [filtertag, setFiltertags] = useState('todos');
 
     const adverts = GetAdvert();
     const tag = GetTag();
@@ -96,7 +98,7 @@ const EmptyList = () => (
     }
     return (
         <Page title="Lista de Anuncios" {...props}>
-        <div className="test"> 
+        <div className="AdvertsPage"> 
         <label>
             Filtra por Nombre:
         <input type="text" value={filtername} onChange={handleChangeFiltername}/>
@@ -130,29 +132,37 @@ const EmptyList = () => (
             </div>
         
         {adverts.length ? (
-            <ul>
+            <div className='spaceAdverts'>
                 {results4.map(advert => (
-                    <li key={advert.id}>
+                    <div key={advert.id} className='showAdverts'>
 
                     <Link to={`/adverts/${advert.id}`}>
-                        <article>
-                            <div>
+                        <article className='articlesDetail'>
+                            <div className='showAdverts'>
 
-                                <span className='adverts-price'>{advert.price} EUR</span>
-                                <span className='adverts-name'>{advert.name}</span>
-                                <span className='adverts-tags'>{advert.tags}</span> 
+                                <span className='adverts-price'><p>Precio:</p> {advert.price} EUR </span> <br></br>
+                                <span className='adverts-name'> <p>Nombre:</p> {advert.name} </span> <br></br>
+                              <div>
+                                <h4>Tags:</h4>
+                                {advert.tags.map((usar) => {
+                                    return (<span className='adverts-tags'> {usar} </span>) 
+                                })}
+                                
+                                
+                              </div>
+                                
                                 {advert.sale === true &&
-                                <span className='adverts-sale'>Compra</span>
+                                <span className='adverts-sale'><p>Estado:</p> Compra </span>
                                 }
                                 {advert.sale === false &&
-                                <span className='adverts-sale'>Venta</span>
+                                <span className='adverts-sale'><p>Estado:</p> Venta </span>
                                 }
                             </div>
                         </article>
                     </Link>
-                    </li>
+                    </div>
                 ))}
-            </ul>
+            </div>
         ) : (
             <EmptyList />
         )}    

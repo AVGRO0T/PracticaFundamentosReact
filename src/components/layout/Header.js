@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import Button from '../common/Button';
 import { logout } from '../../clientApi/petitions';
 import { useAuth } from '../userLogin/userState';
-
+import './header.css'
 
 const Header = ({ className }) => {
   const { isLogged, handleLogout } = useAuth();
@@ -29,7 +29,7 @@ const Header = ({ className }) => {
           Anuncios
         </NavLink>
         {isLogged ? (
-          <Button className="header-button" onClick={handleLogoutClick}>
+          <Button className="header-button" to="/login" onClick={handleLogoutClick}>
             Cerrar Sesion
           </Button>
         ) : (

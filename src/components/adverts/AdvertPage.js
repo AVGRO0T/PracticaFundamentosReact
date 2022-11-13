@@ -4,7 +4,7 @@ import Page from '../layout/Page';
 import { getAdvertsDetail } from '../../clientApi/petitions';
 
 import DeleteAdvert from './DeleteAdvert';
-
+import './AdvertDetail.css'
 
 const AdvertPage = props => {
     const [advertname, setAdvertname] = useState('');
@@ -39,16 +39,17 @@ const AdvertPage = props => {
           unmounteRef.current = true;
         };
       }, []);
-       let boolean = true;
+     
       
       return (
         <Page title="Detalle de Anuncio" {...props}>
             
           <div>
            <h3> {advertname} </h3>
-           <img src={advertphoto}></img>
+          {advertphoto != null & <img src={advertphoto} alt=''></img> }
            <p>Precio: {advertprice}</p>
-           <p> Tipo de Producto {advertsale}</p>
+           {advertsale === true && <p> Tipo de Producto: Compra</p> }
+           {advertsale === false && <p> Tipo de Producto: Compra</p> }
            <span>TAGS: {adverttags}</span>
            {DeleteAdvert(advertId)}
           

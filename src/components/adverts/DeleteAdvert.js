@@ -16,7 +16,7 @@ const DeleteAdvert = (advertId) =>{
             console.log("Ha ocurrido un error")
         }
     }
-    var style = 'none'
+    
     function handleSubmit (event) {
         event.preventDefault();
         setSubmit('block')

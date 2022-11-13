@@ -6,7 +6,8 @@ import RequireAuth  from "./components/userLogin/RequireAuth";
 import Layout from "./components/layout/Layout"
 import AdvertsPage from './components/adverts/AdvertsPage';
 import AdvertPage from './components/adverts/AdvertPage';
-
+import { ErrorPage } from './ErrorPage';
+import './styles/main.css'
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
     </Route>
 
     <Route path="/" element={<Navigate to="/adverts" />} />
+    <Route path="/404" element={<ErrorPage/>} />
+        <Route path="*" element={<Navigate to="/404" />} />
      </Routes>
       
     </div>
