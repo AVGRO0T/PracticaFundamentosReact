@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Button from '../common/Button';
 //import classNames from 'classnames';
 import Page from '../layout/Page';
+import { GetTag } from './NewAdvertPage';
 const EmptyList = () => (
     <div style={{ textAlign: 'center' }}>
       <p>No hay anuncios creados</p>
@@ -30,15 +31,22 @@ const EmptyList = () => (
 
   const AdvertsPage = props => {
     const [filtername, setFiltername] = useState('');
-    const [filterprice, setFilterprice] = useState(0)
+    const [filterprice, setFilterprice] = useState(0);
+    const [filtersale, setFilterSale] = useState('todos');
+    const [filtertag, setFiltertags] = useState([]);
+
     const adverts = GetAdvert();
+    const tag = GetTag();
 
    const handleChangeFiltername = event => setFiltername(event.target.value);
    const handleChangeFilterprice = event => setFilterprice(event.target.value);
-    /* const className = classNames(styles.advertsPage, {
-        [styles.empty]: !adverts.length,
-    }); */
-
+   const handleChangeFiltersale = event => setFilterSale(event.target.value);
+   const handleChangeFiltertags = event => {
+    setFiltertags(event.target.value);
+   // setFiltertags('work','mobile','lifesty','motor')
+    console.log(filtertag)
+    }
+    
     //Filtro Name
 
     let results = [];
@@ -50,12 +58,40 @@ const EmptyList = () => (
         )
     }
     // Filtro Precio
+    let results2 = [];
     if (!filterprice ){
-        results = adverts
+        results2 = results
     }else {
-        results = adverts.filter( (data) => 
+       results2 = results.filter( (data) => 
         
          data.price >= parseInt(filterprice,10) 
+        )
+    }
+    // Filtro Estado
+    let results3 = [];
+    if (filtersale === 'todos'){
+        results3 = results2
+    } else if ( filtersale === "compra"){
+       
+        function searching (x) { return x.sale === true}
+        results3 = results2.filter(searching);
+        
+    }else {
+        function searching (x) { return x.sale === false}
+        results3 = results2.filter(searching);
+    }
+
+    // Filtro por tags
+
+    let results4 = [];
+    if (filtertag === 'todos'){
+        if (!results3) {
+            results4 = adverts
+        }else
+        results4 = results3
+    } else {
+        results4 = results3.filter( (data) => 
+        data.tags.includes(filtertag)
         )
     }
     return (
@@ -70,9 +106,32 @@ const EmptyList = () => (
         <input type="range" value={filterprice} onChange={handleChangeFilterprice}/>
         {filterprice}
         </label>
+        <div>
+       
+            Filtrar por Estado:
+        <label><input type={"radio"} onChange={handleChangeFiltersale} name="empleoactual" value="todos"/> Todos </label>
+        <label><input type={"radio"} onChange={handleChangeFiltersale} name="empleoactual" value="compra"/> Compra</label>
+        <label><input type={"radio"} onChange={handleChangeFiltersale} name="empleoactual" value={false}/> Venta </label>
+
+
+        </div>
+        <div className='selectTags'>
+            {tag.map(tagss => {
+                return (
+                    <div key={tagss.id}>
+                    <input type={"checkbox"} onChange={handleChangeFiltertags} value={tagss} name="tags"/>
+              <label htmlFor={tagss}>{tagss}</label>
+              </div>
+                )
+            })
+            } 
+           <input type={"checkbox"} onChange={handleChangeFiltertags} value="todos" name="tags"/>
+              <label htmlFor="todo">Todos</label>
+            </div>
+        
         {adverts.length ? (
             <ul>
-                {results.map(advert => (
+                {results4.map(advert => (
                     <li key={advert.id}>
 
                     <Link to={`/adverts/${advert.id}`}>

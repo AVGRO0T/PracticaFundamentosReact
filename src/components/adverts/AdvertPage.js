@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Page from '../layout/Page';
-import { getAdvertsDetail, deleteAdvertsDetail } from '../../clientApi/petitions';
-import Button from '../common/Button';
+import { getAdvertsDetail } from '../../clientApi/petitions';
+
+import DeleteAdvert from './DeleteAdvert';
 
 
 const AdvertPage = props => {
@@ -11,6 +12,7 @@ const AdvertPage = props => {
     const [adverttags, setAdverttags] = useState(null);
     const [advertsale, setAdvertsale] = useState(null);
     const [advertphoto, setAdvertphoto] = useState(null);
+    
    
     const {advertId} = useParams();
     const navigate = useNavigate();
@@ -23,7 +25,8 @@ const AdvertPage = props => {
             setAdvertphoto(advert.photo);
             setAdvertprice(advert.price);
             setAdvertsale(advert.sale);
-            setAdverttags(advert.tags)
+            setAdverttags(advert.tags);
+            
          })
          .catch(error => {
             if (error.status === 404) {
@@ -36,9 +39,8 @@ const AdvertPage = props => {
           unmounteRef.current = true;
         };
       }, []);
-
-
-     
+       let boolean = true;
+      
       return (
         <Page title="Detalle de Anuncio" {...props}>
             
@@ -48,10 +50,11 @@ const AdvertPage = props => {
            <p>Precio: {advertprice}</p>
            <p> Tipo de Producto {advertsale}</p>
            <span>TAGS: {adverttags}</span>
-           
+           {DeleteAdvert(advertId)}
           
-           
-    
+          
+
+          
           </div>
             
 

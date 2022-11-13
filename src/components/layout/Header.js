@@ -15,21 +15,15 @@ const Header = ({ className }) => {
 
   return (
     <header className={classNames('header', className)}>
-      <Link to="/">
-        <div className="header-logo">
-          {/* <img src={logo} alt="Twitter-React" /> */}
-          
-        </div>
-      </Link>
       <nav className="header-nav">
         <NavLink
-          to="/new"
+          to="/adverts/new"
         >
           Nuevo Anuncio
         </NavLink>
         |
         <NavLink
-          to="/"
+          to="/adverts"
           end
         >
           Anuncios

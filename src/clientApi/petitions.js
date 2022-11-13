@@ -30,6 +30,6 @@ export const login = credentials => {
   }
 
   export const deleteAdvertsDetail = advertId => {
-    return client.get(`/api/v1/adverts/${advertId}`);
+    return client.delete(`/api/v1/adverts/${advertId}`);
   }
   
